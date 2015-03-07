@@ -1,0 +1,95 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "error:contract.line:"
+msgid ""
+"Asset \"%s\" has no owner and it is required in order to generate their "
+"maintenances"
+msgstr ""
+"El activo \"%s\" no tienen propietario y se requiere para la generación de "
+"sus mantenimientos."
+
+msgctxt "error:contract.line:"
+msgid ""
+"No maintenance category has been defined. Please, define one in contract "
+"configuration"
+msgstr ""
+"No se ha definido ninguna categoria para los mantenimientos de contrato. Por"
+" favor, defina una en la configuración de contratos."
+
+msgctxt "field:contract,projects:"
+msgid "Projects"
+msgstr "Proyectos"
+
+msgctxt "field:contract.configuration,maintenance_category:"
+msgid "Maintenance Category"
+msgstr "Categoría mantenimento"
+
+msgctxt "field:contract.create_shipments.start,date:"
+msgid "Date"
+msgstr "Fecha"
+
+msgctxt "field:contract.create_shipments.start,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:contract.line,asset:"
+msgid "Asset"
+msgstr "Activo"
+
+msgctxt "field:contract.line,asset_party:"
+msgid "Party"
+msgstr "Tercero"
+
+msgctxt "field:contract.line,last_work_shipment_date:"
+msgid "Last Work Shipment Date"
+msgstr "Fecha último albarán de trabajo"
+
+msgctxt "field:contract.line,projects:"
+msgid "Projects"
+msgstr "Proyectos"
+
+msgctxt "field:shipment.work,maintenance:"
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
+msgctxt "field:work.project,contract_line:"
+msgid "Contract Line"
+msgstr "Línea de contrato"
+
+msgctxt "model:contract.create_shipments.start,name:"
+msgid "Create Shipments Start"
+msgstr "Inicio crear albaranes de trabajo"
+
+msgctxt "model:ir.action,name:act_contract_form"
+msgid "Contracts"
+msgstr "Contratos"
+
+msgctxt "model:ir.action,name:act_project_contract_form"
+msgid "Contracts"
+msgstr "Contratos"
+
+msgctxt "model:ir.action,name:wizard_create_shipments"
+msgid "Create Shipments"
+msgstr "Crear albaranes de trabajo"
+
+msgctxt "model:ir.ui.menu,name:menu_create_shipments"
+msgid "Create Shipments Work"
+msgstr "Crear albaranes de trabajo"
+
+msgctxt "view:contract.create_shipments.start:"
+msgid "Create Contract Shipment Work up to"
+msgstr "Crear albaranes de trabajo de contrato hasta la fecha"
+
+msgctxt "view:contract.create_shipments.start:"
+msgid "Create Shipments Work"
+msgstr "Crear albaranes de trabajo"
+
+msgctxt "wizard_button:contract.create_shipments,start,create_shipments:"
+msgid "OK"
+msgstr "Aceptar"
+
+msgctxt "wizard_button:contract.create_shipments,start,end:"
+msgid "Cancel"
+msgstr "Cancelar"
