@@ -6,7 +6,7 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 
-__all__ = ['ContractLine', 'Asset', 'ShipmentWork']
+__all__ = ['ContractLine', 'Asset', 'ShipmentWork', 'ShipmentWorkProduct']
 
 __metaclass__ = PoolMeta
 
@@ -37,6 +37,18 @@ class ShipmentWork:
             return super(ShipmentWork, cls).default_employee()
         except AttributeError:
             return None
+
+
+class ShipmentWorkProduct:
+    __name__ = 'shipment.work.product'
+
+    def get_sale_line(self, sale, invoice_method):
+        line = super(ShipmentWorkProduct, self).get_sale_line(
+                sale, invoice_method)
+        if not line:
+            return
+        line.asset = self.shipment.asset
+        return line
 
 
 class ContractLine:

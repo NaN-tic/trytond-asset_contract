@@ -9,4 +9,5 @@ def register():
         ContractLine,
         Asset,
         ShipmentWork,
+        ShipmentWorkProduct,
         module='asset_contract', type_='model')
