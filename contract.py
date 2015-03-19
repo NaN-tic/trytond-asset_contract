@@ -22,21 +22,37 @@ class Asset:
 class ShipmentWork:
     __name__ = 'shipment.work'
 
-    asset = fields.Many2One('asset', 'Asset')
+    asset = fields.Many2One('asset', 'Asset',
+        domain=[
+            ('owner', '=', Eval('party')),
+            ],
+        depends=['party'])
 
-    @classmethod
-    def default_employee(cls):
+    @fields.depends('asset', 'employees')
+    def on_change_asset(self):
         pool = Pool()
-        Asset = pool.get('asset')
-        asset_id = Transaction().context.get('asset')
-        if asset_id:
-            asset = Asset(asset_id)
-            if hasattr(asset, 'zone') and asset.zone and asset.zone.employee:
-                return asset.zone.employee.id
-        try:
-            return super(ShipmentWork, cls).default_employee()
-        except AttributeError:
-            return None
+        Employee = pool.get('company.employee')
+        changes = {}
+        if self.asset:
+            if (hasattr(self.asset, 'zone') and self.asset.zone and
+                    self.asset.zone.employee):
+                values = {}
+                employee = self.asset.zone.employee
+                for field_name, field in Employee._fields.iteritems():
+                    try:
+                        value = getattr(employee, field_name)
+                    except AttributeError:
+                        continue
+                    if value and field._type in ('many2one', 'one2one'):
+                        values[field_name] = value.id
+                        values[field_name + '.rec_name'] = value.rec_name
+                    elif field._type not in ('one2many', 'many2many'):
+                        values[field_name] = value
+                changes['employees'] = {
+                    'add': [(-1, values)],
+                    'remove': [x.id for x in self.employees],
+                    }
+        return changes
 
 
 class ShipmentWorkProduct:
