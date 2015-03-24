@@ -10,4 +10,5 @@ def register():
         Asset,
         ShipmentWork,
         ShipmentWorkProduct,
+        ContractConsumption,
         module='asset_contract', type_='model')

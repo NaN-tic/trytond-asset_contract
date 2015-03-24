@@ -1,12 +1,11 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
-
 from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
-from trytond.transaction import Transaction
 
-__all__ = ['ContractLine', 'Asset', 'ShipmentWork', 'ShipmentWorkProduct']
+__all__ = ['Asset', 'ShipmentWork', 'ShipmentWorkProduct', 'ContractLine',
+    'ContractConsumption']
 
 __metaclass__ = PoolMeta
 
@@ -101,3 +100,13 @@ class ContractLine:
                 self.asset.zone.employee:
             shipment.employees = [self.asset.zone.employee]
         return shipment
+
+
+class ContractConsumption:
+    __name__ = 'contract.consumption'
+
+    def get_invoice_line(self):
+        line = super(ContractConsumption, self).get_invoice_line()
+        if self.contract_line.asset:
+            line.invoice_asset = self.contract_line.asset
+        return line
