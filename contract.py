@@ -23,7 +23,7 @@ class ShipmentWork:
 
     asset = fields.Many2One('asset', 'Asset',
         domain=[
-            ('owner', '=', Eval('party')),
+            If(Bool(Eval('party')), [('owner', '=', Eval('party'))], []),
             ],
         depends=['party'])
 
@@ -51,6 +51,8 @@ class ShipmentWork:
                     'add': [(-1, values)],
                     'remove': [x.id for x in self.employees],
                     }
+            if self.asset.owner:
+                changes['party'] = self.asset.owner.id
         return changes
 
 
