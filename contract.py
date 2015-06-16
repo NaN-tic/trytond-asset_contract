@@ -29,28 +29,11 @@ class ShipmentWork:
 
     @fields.depends('asset', 'employees')
     def on_change_asset(self):
-        pool = Pool()
-        Employee = pool.get('company.employee')
         changes = {}
         if self.asset:
             if (hasattr(self.asset, 'zone') and self.asset.zone and
                     self.asset.zone.employee):
-                values = {}
-                employee = self.asset.zone.employee
-                for field_name, field in Employee._fields.iteritems():
-                    try:
-                        value = getattr(employee, field_name)
-                    except AttributeError:
-                        continue
-                    if value and field._type in ('many2one', 'one2one'):
-                        values[field_name] = value.id
-                        values[field_name + '.rec_name'] = value.rec_name
-                    elif field._type not in ('one2many', 'many2many'):
-                        values[field_name] = value
-                changes['employees'] = {
-                    'add': [(-1, values)],
-                    'remove': [x.id for x in self.employees],
-                    }
+                changes['employees'] = [self.asset.zone.employee.id]
             if self.asset.owner:
                 changes['party'] = self.asset.owner.id
         return changes
