@@ -206,6 +206,7 @@ Create daily service::
     >>> Service = Model.get('contract.service')
     >>> service = Service()
     >>> service.product = service_product
+    >>> service.name = 'Service'
     >>> service.freq = 'daily'
     >>> service.interval = 1
     >>> service.save()
