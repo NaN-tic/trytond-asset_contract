@@ -60,7 +60,7 @@ msgstr "Proyectos"
 
 msgctxt "field:shipment.work,asset:"
 msgid "Asset"
-msgstr "Activos"
+msgstr "Activo"
 
 msgctxt "field:work.project,contract_line:"
 msgid "Contract Line"
