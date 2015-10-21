@@ -222,6 +222,8 @@ Create a contract::
     >>> line = contract.lines.new()
     >>> line.service = service
     >>> line.create_shipment_work = True
+    >>> line.start_date = today
+    >>> line.first_invoice_date = today
     >>> line.first_shipment_date = today
     >>> line.asset = asset
     >>> contract.click('validate_contract')
