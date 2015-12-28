@@ -1,7 +1,7 @@
 # The COPYRIGHT file at the top level of this repository contains
 # the full copyright notices and license terms.
 from trytond.model import fields
-from trytond.pool import Pool, PoolMeta
+from trytond.pool import PoolMeta
 from trytond.pyson import Eval, If, Bool
 
 __all__ = ['Asset', 'ShipmentWork', 'ShipmentWorkProduct', 'ContractLine',
@@ -25,7 +25,11 @@ class ShipmentWork:
         domain=[
             If(Bool(Eval('party')), [('owner', '=', Eval('party'))], []),
             ],
-        depends=['party'])
+        states={
+            'required': ~Eval('state').in_(['draft', 'pending', 'cancel']),
+            'readonly': Eval('state').in_(['cancel', 'done', 'checked']),
+            },
+        depends=['party', 'state'])
 
     @fields.depends('asset', 'employees')
     def on_change_asset(self):
@@ -92,6 +96,6 @@ class ContractConsumption:
 
     def get_invoice_line(self):
         line = super(ContractConsumption, self).get_invoice_line()
-        if self.contract_line.asset:
+        if line and self.contract_line.asset:
             line.invoice_asset = self.contract_line.asset
         return line
