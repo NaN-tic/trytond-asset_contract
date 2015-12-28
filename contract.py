@@ -37,6 +37,6 @@ class ContractConsumption:
 
     def get_invoice_line(self):
         line = super(ContractConsumption, self).get_invoice_line()
-        if self.contract_line.asset:
+        if line and self.contract_line.asset:
             line.invoice_asset = self.contract_line.asset
         return line
