@@ -8,7 +8,5 @@ def register():
     Pool.register(
         ContractLine,
         Asset,
-        ShipmentWork,
-        ShipmentWorkProduct,
         ContractConsumption,
         module='asset_contract', type_='model')
