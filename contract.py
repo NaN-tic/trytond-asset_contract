@@ -28,7 +28,7 @@ class ContractLine:
 
     @fields.depends('contract')
     def on_change_with_asset_party(self, name=None):
-        if self.contract:
+        if self.contract and self.contract.party:
             return self.contract.party.id
 
 
