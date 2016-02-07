@@ -1,22 +1,6 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
-
-msgctxt "error:contract.line:"
-msgid ""
-"Asset \"%s\" has no owner and it is required in order to generate their "
-"maintenances"
-msgstr ""
-"El activo \"%s\" no tienen propietario y se requiere para la generación de "
-"sus mantenimientos."
-
-msgctxt "error:contract.line:"
-msgid ""
-"No maintenance category has been defined. Please, define one in contract "
-"configuration"
-msgstr ""
-"No se ha definido ninguna categoria para los mantenimientos de contrato. Por"
-" favor, defina una en la configuración de contratos."
 
 msgctxt "field:asset,contract_lines:"
 msgid "Contract Lines"
@@ -25,14 +9,6 @@ msgstr "Lineas de contratos"
 msgctxt "field:asset,shipments:"
 msgid "Work Shipments"
 msgstr "Albaranes de trabajo"
-
-msgctxt "field:contract,projects:"
-msgid "Projects"
-msgstr "Proyectos"
-
-msgctxt "field:contract.configuration,maintenance_category:"
-msgid "Maintenance Category"
-msgstr "Categoría mantenimento"
 
 msgctxt "field:contract.create_shipments.start,date:"
 msgid "Date"
@@ -54,17 +30,9 @@ msgctxt "field:contract.line,last_work_shipment_date:"
 msgid "Last Work Shipment Date"
 msgstr "Fecha último albarán de trabajo"
 
-msgctxt "field:contract.line,projects:"
-msgid "Projects"
-msgstr "Proyectos"
-
 msgctxt "field:shipment.work,asset:"
 msgid "Asset"
 msgstr "Activo"
-
-msgctxt "field:work.project,contract_line:"
-msgid "Contract Line"
-msgstr "Línea de contrato"
 
 msgctxt "model:contract.create_shipments.start,name:"
 msgid "Create Shipments Start"
@@ -77,10 +45,6 @@ msgstr "Contratos"
 msgctxt "model:ir.action,name:act_contract_line_form"
 msgid "Contract Lines"
 msgstr "Lineas de contratos"
-
-msgctxt "model:ir.action,name:act_shipment_work_form"
-msgid "Shipment Work"
-msgstr "Envío"
 
 msgctxt "view:contract.create_shipments.start:"
 msgid "Create Contract Shipment Work up to"
