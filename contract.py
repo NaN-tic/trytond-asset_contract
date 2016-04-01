@@ -2,7 +2,6 @@
 # the full copyright notices and license terms.
 from trytond.model import fields
 from trytond.pool import PoolMeta
-from trytond.pyson import Eval
 
 __all__ = ['Asset', 'ContractLine', 'ContractConsumption']
 
@@ -21,10 +20,7 @@ class ContractLine:
 
     asset_party = fields.Function(fields.Many2One('party.party', 'Party'),
         'on_change_with_asset_party')
-    asset = fields.Many2One('asset', 'Asset', domain=[
-            ('owner', '=', Eval('asset_party')),
-            ],
-        depends=['asset_party'])
+    asset = fields.Many2One('asset', 'Asset')
 
     @fields.depends('contract')
     def on_change_with_asset_party(self, name=None):
