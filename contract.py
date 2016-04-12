@@ -35,4 +35,6 @@ class ContractConsumption:
         line = super(ContractConsumption, self).get_invoice_line()
         if line and self.contract_line.asset:
             line.invoice_asset = self.contract_line.asset
+        if hasattr(line, 'on_change_invoice_asset'):
+            line.on_change_invoice_asset()
         return line
