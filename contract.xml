@@ -11,6 +11,11 @@
             <field name="inherit" ref="contract.contract_line_view_list"/>
             <field name="name">contract_line_list</field>
         </record>
+        <record model="ir.ui.view" id="contract_line_view_list_sequence">
+            <field name="model">contract.line</field>
+            <field name="inherit" ref="contract.contract_line_view_list_sequence"/>
+            <field name="name">contract_line_list_sequence</field>
+        </record>
         <record model="ir.action.act_window" id="act_contract_form">
             <field name="name">Contracts</field>
             <field name="res_model">contract</field>
