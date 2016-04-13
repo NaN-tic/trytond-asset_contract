@@ -138,29 +138,29 @@ Create a contract::
     >>> contract = Contract()
     >>> contract.party = customer
     >>> contract.start_period_date = datetime.date(today.year, 01, 01)
-    >>> contract.start_date = datetime.date(today.year, 01, 01)
+    >>> contract.first_invoice_date = datetime.date(today.year, 01, 01)
     >>> contract.freq = 'monthly'
+    >>> contract.interval = 1
     >>> line = contract.lines.new()
-    >>> line.start_date = datetime.date(today.year, 01, 01)
-    >>> line.first_invoice_date = datetime.date(today.year, 01, 31)
-    >>> line.asset = asset
     >>> line.service = service
+    >>> line.start_date = datetime.date(today.year, 01, 01)
+    >>> line.asset = asset
     >>> line.unit_price
     Decimal('30')
-    >>> contract.click('validate_contract')
+    >>> contract.click('confirm')
     >>> contract.state
-    u'validated'
+    u'confirmed'
 
 Generate consumed lines::
 
     >>> create_consumptions = Wizard('contract.create_consumptions')
-    >>> create_consumptions.form.date = datetime.date(today.year, 02, 01)
+    >>> create_consumptions.form.date = datetime.date(today.year, 01, 31)
     >>> create_consumptions.execute('create_consumptions')
 
 Generate invoice for consumed lines::
 
     >>> create_invoice = Wizard('contract.create_invoices')
-    >>> create_invoice.form.date = datetime.date(today.year, 02, 01)
+    >>> create_invoice.form.date = datetime.date(today.year, 01, 31)
     >>> create_invoice.execute('create_invoices')
 
 Only one invoice is generated for grouping party::
@@ -172,4 +172,3 @@ Only one invoice is generated for grouping party::
     >>> invoice_line, = invoice.lines
     >>> invoice_line.invoice_asset == asset
     True
-
