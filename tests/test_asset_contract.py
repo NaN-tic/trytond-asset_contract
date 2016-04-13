@@ -14,7 +14,7 @@ class TestCase(ModuleTestCase):
 
 def suite():
     suite = trytond.tests.test_tryton.suite()
-    # suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestCase))
+    suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestCase))
     suite.addTests(doctest.DocFileSuite(
             'scenario_asset_contract.rst',
             setUp=doctest_setup, tearDown=doctest_teardown, encoding='utf-8',
