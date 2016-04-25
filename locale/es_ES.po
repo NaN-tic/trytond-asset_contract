@@ -2,21 +2,17 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "error:contract.line:"
+msgid ""
+"Contract Line \"%(line)s\" cannot be removed because contract "
+"\"%(contract)s\" is not in draft state."
+msgstr ""
+"La línea de contrato \"%(line)s\" no se puede eliminar porqué el contrato "
+"\"%(contract)s\" no está en estado borrador."
+
 msgctxt "field:asset,contract_lines:"
 msgid "Contract Lines"
 msgstr "Lineas de contratos"
-
-msgctxt "field:asset,shipments:"
-msgid "Work Shipments"
-msgstr "Albaranes de trabajo"
-
-msgctxt "field:contract.create_shipments.start,date:"
-msgid "Date"
-msgstr "Fecha"
-
-msgctxt "field:contract.create_shipments.start,id:"
-msgid "ID"
-msgstr "Identificador"
 
 msgctxt "field:contract.line,asset:"
 msgid "Asset"
@@ -26,18 +22,6 @@ msgctxt "field:contract.line,asset_party:"
 msgid "Party"
 msgstr "Tercero"
 
-msgctxt "field:contract.line,last_work_shipment_date:"
-msgid "Last Work Shipment Date"
-msgstr "Fecha último albarán de trabajo"
-
-msgctxt "field:shipment.work,asset:"
-msgid "Asset"
-msgstr "Activo"
-
-msgctxt "model:contract.create_shipments.start,name:"
-msgid "Create Shipments Start"
-msgstr "Inicio crear albaranes de trabajo"
-
 msgctxt "model:ir.action,name:act_contract_form"
 msgid "Contracts"
 msgstr "Contratos"
@@ -45,19 +29,3 @@ msgstr "Contratos"
 msgctxt "model:ir.action,name:act_contract_line_form"
 msgid "Contract Lines"
 msgstr "Lineas de contratos"
-
-msgctxt "view:contract.create_shipments.start:"
-msgid "Create Contract Shipment Work up to"
-msgstr "Crear albaranes de trabajo de contrato hasta la fecha"
-
-msgctxt "view:contract.create_shipments.start:"
-msgid "Create Shipments Work"
-msgstr "Crear albaranes de trabajo"
-
-msgctxt "wizard_button:contract.create_shipments,start,create_shipments:"
-msgid "OK"
-msgstr "Aceptar"
-
-msgctxt "wizard_button:contract.create_shipments,start,end:"
-msgid "Cancel"
-msgstr "Cancelar"
