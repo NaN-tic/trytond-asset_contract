@@ -10,9 +10,17 @@ __metaclass__ = PoolMeta
 
 class Asset:
     __name__ = 'asset'
-
     contract_lines = fields.One2Many('contract.line', 'asset',
         'Contract Lines')
+
+    @classmethod
+    def copy(cls, assets, default=None):
+        if default is None:
+            default = {}
+        default = default.copy()
+        if not 'contract_lines' in default:
+            default['contract_lines'] = None
+        return super(Asset, cls).copy(assets, default)
 
 
 class ContractLine:
