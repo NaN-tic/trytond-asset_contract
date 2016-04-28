@@ -5,11 +5,10 @@ from trytond.pool import PoolMeta
 
 __all__ = ['Asset', 'ContractLine', 'ContractConsumption']
 
-__metaclass__ = PoolMeta
-
 
 class Asset:
     __name__ = 'asset'
+    __metaclass__ = PoolMeta
     contract_lines = fields.One2Many('contract.line', 'asset',
         'Contract Lines')
 
@@ -25,7 +24,7 @@ class Asset:
 
 class ContractLine:
     __name__ = 'contract.line'
-
+    __metaclass__ = PoolMeta
     asset_party = fields.Function(fields.Many2One('party.party', 'Party'),
         'on_change_with_asset_party')
     asset = fields.Many2One('asset', 'Asset')
@@ -38,6 +37,7 @@ class ContractLine:
 
 class ContractConsumption:
     __name__ = 'contract.consumption'
+    __metaclass__ = PoolMeta
 
     def get_invoice_line(self):
         line = super(ContractConsumption, self).get_invoice_line()
