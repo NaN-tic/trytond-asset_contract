@@ -1,0 +1,9 @@
+<tryton>
+    <data>
+        <record model="ir.ui.view" id="asset_view_form">
+            <field name="model">asset</field>
+            <field name="inherit" ref="asset.asset_view_form"/>
+            <field name="name">asset_form</field>
+        </record>
+    </data>
+</tryton>
