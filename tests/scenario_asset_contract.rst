@@ -119,7 +119,6 @@ Create an asset::
     >>> asset = Asset()
     >>> asset.name = 'Asset'
     >>> asset.product = product
-    >>> asset.owner = customer
     >>> asset.save()
 
 Create daily service::
