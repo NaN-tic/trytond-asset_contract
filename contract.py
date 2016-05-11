@@ -57,7 +57,7 @@ class ContractLine:
         if not self.contract.state in ('confirmed', 'finished'):
             return
         Contract = Pool().get('contract')
-        cursor = Transaction().cursor
+        cursor = Transaction().connection.cursor()
         max_date = datetime.date(datetime.MAXYEAR, 12, 31)
         start_date = self.start_date
         end_date = self.end_date or max_date
@@ -95,4 +95,5 @@ class ContractConsumption:
             line.invoice_asset = self.contract_line.asset
         if hasattr(line, 'on_change_invoice_asset'):
             line.on_change_invoice_asset()
+
         return line

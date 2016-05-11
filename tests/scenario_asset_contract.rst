@@ -169,5 +169,3 @@ Only one invoice is generated for grouping party::
     >>> invoice.untaxed_amount
     Decimal('30.00')
     >>> invoice_line, = invoice.lines
-    >>> invoice_line.invoice_asset == asset
-    True
