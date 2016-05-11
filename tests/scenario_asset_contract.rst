@@ -29,6 +29,8 @@ Install module::
     >>> Module = Model.get('ir.module')
     >>> module, = Module.find([('name', '=', 'asset_contract')])
     >>> module.click('install')
+    >>> module, = Module.find([('name', '=', 'account_invoice')])
+    >>> module.click('install')
     >>> Wizard('ir.module.install_upgrade').execute('upgrade')
 
 Create company::
