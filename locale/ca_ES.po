@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -9,6 +9,19 @@ msgid ""
 msgstr ""
 "La línia de contracte \"%(line)s\" no es pot eliminar perquè el contracte "
 "\"%(contract)s\" no està en estat esborrany."
+
+msgctxt "error:contract.line:"
+msgid ""
+"Contract line \"%(contract_line)s\" is not valid because asset \"%(asset)s\""
+" is already assigned to contract line \"%(overlapping_line)s\"."
+msgstr ""
+"La línia de contracte \"%(contract_line)s\" no és vàlida perquè l'actiu "
+"\"%(asset)s\" ja està assignat a la línia de contracte "
+"\"%(overlapping_line)s\"."
+
+msgctxt "field:asset,contract_line:"
+msgid "Current Contract Line"
+msgstr "Línia de contracte actual"
 
 msgctxt "field:asset,contract_lines:"
 msgid "Contract Lines"
@@ -29,3 +42,7 @@ msgstr "Contractes"
 msgctxt "model:ir.action,name:act_contract_line_form"
 msgid "Contract Lines"
 msgstr "Línies de contracte"
+
+msgctxt "view:asset:"
+msgid "Contract Lines"
+msgstr "Línies de contractes"

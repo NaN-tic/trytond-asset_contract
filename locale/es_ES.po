@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
@@ -9,6 +9,19 @@ msgid ""
 msgstr ""
 "La línea de contrato \"%(line)s\" no se puede eliminar porqué el contrato "
 "\"%(contract)s\" no está en estado borrador."
+
+msgctxt "error:contract.line:"
+msgid ""
+"Contract line \"%(contract_line)s\" is not valid because asset \"%(asset)s\""
+" is already assigned to contract line \"%(overlapping_line)s\"."
+msgstr ""
+"La línea de contrato \"%(contract_line)s\" no es válida porqué el activo "
+"\"%(asset)s\" ya está asignado a la línea de contrato "
+"\"%(overlapping_line)s\"."
+
+msgctxt "field:asset,contract_line:"
+msgid "Current Contract Line"
+msgstr "Línea de contrato actual"
 
 msgctxt "field:asset,contract_lines:"
 msgid "Contract Lines"
@@ -27,5 +40,9 @@ msgid "Contracts"
 msgstr "Contratos"
 
 msgctxt "model:ir.action,name:act_contract_line_form"
+msgid "Contract Lines"
+msgstr "Lineas de contratos"
+
+msgctxt "view:asset:"
 msgid "Contract Lines"
 msgstr "Lineas de contratos"
