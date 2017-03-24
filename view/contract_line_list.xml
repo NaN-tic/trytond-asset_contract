@@ -4,5 +4,6 @@
 <data>
     <xpath expr="/tree/field[@name='unit_price']" position="before">
         <field name="asset"/>
+        <field name="asset_party"/>
     </xpath>
 </data>
