@@ -1,6 +1,6 @@
-=============
-Sale Scenario
-=============
+=======================
+Asset Contract Scenario
+=======================
 
 Imports::
 
@@ -132,6 +132,20 @@ Create daily service::
     >>> service.freq = 'daily'
     >>> service.interval = 1
     >>> service.save()
+
+
+Configure contract::
+
+    >>> Sequence = Model.get('ir.sequence')
+    >>> sequence_contract, = Sequence.find([('code', '=', 'contract')])
+    >>> Journal = Model.get('account.journal')
+    >>> journal, = Journal.find([('type', '=', 'revenue')])
+
+    >>> ContractConfig = Model.get('contract.configuration')
+    >>> contract_config = ContractConfig(1)
+    >>> contract_config.contract_sequence = sequence_contract
+    >>> contract_config.journal = journal
+    >>> contract_config.save()
 
 Create a contract::
 

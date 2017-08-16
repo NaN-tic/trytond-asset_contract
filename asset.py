@@ -19,6 +19,6 @@ class Asset:
         if default is None:
             default = {}
         default = default.copy()
-        if not 'contract_lines' in default:
+        if 'contract_lines' not in default:
             default['contract_lines'] = None
         return super(Asset, cls).copy(assets, default)

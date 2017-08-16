@@ -54,7 +54,7 @@ class ContractLine:
     def check_dates(self):
         if not self.asset:
             return
-        if not self.contract.state in ('confirmed', 'finished'):
+        if self.contract.state not in ('confirmed', 'finished'):
             return
         Contract = Pool().get('contract')
         cursor = Transaction().connection.cursor()
@@ -88,6 +88,7 @@ class ContractLine:
 class ContractConsumption:
     __name__ = 'contract.consumption'
     __metaclass__ = PoolMeta
+
     def get_invoice_line(self):
         Line = Pool().get('account.invoice.line')
         line = super(ContractConsumption, self).get_invoice_line()
