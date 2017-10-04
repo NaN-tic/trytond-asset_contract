@@ -90,8 +90,7 @@ Create product::
     >>> template.account_expense = expense
     >>> template.account_revenue = revenue
     >>> template.save()
-    >>> product.template = template
-    >>> product.save()
+    >>> product, = template.products
 
     >>> service_product = Product()
     >>> template = ProductTemplate()
@@ -105,8 +104,20 @@ Create product::
     >>> template.account_expense = expense
     >>> template.account_revenue = revenue
     >>> template.save()
-    >>> service_product.template = template
-    >>> service_product.save()
+    >>> service_product, = template.products
+
+    >>> template = ProductTemplate()
+    >>> template.name = 'service 2'
+    >>> template.default_uom = unit
+    >>> template.type = 'service'
+    >>> template.salable = True
+    >>> template.list_price = Decimal('20')
+    >>> template.cost_price = Decimal('5')
+    >>> template.cost_price_method = 'fixed'
+    >>> template.account_expense = expense
+    >>> template.account_revenue = revenue
+    >>> template.save()
+    >>> service_product2, = template.products
 
 Create payment term::
 
@@ -122,6 +133,10 @@ Create an asset::
     >>> asset.name = 'Asset'
     >>> asset.product = product
     >>> asset.save()
+    >>> asset2 = Asset()
+    >>> asset2.name = 'Asset 2'
+    >>> asset2.product = product
+    >>> asset2.save()
 
 Create daily service::
 
@@ -132,7 +147,12 @@ Create daily service::
     >>> service.freq = 'daily'
     >>> service.interval = 1
     >>> service.save()
-
+    >>> service2 = Service()
+    >>> service2.product = service_product2
+    >>> service2.name = 'Service 2'
+    >>> service2.freq = 'daily'
+    >>> service2.interval = 1
+    >>> service2.save()
 
 Configure contract::
 
@@ -185,3 +205,42 @@ Only one invoice is generated for grouping party::
     >>> invoice.untaxed_amount
     Decimal('30.00')
     >>> invoice_line, = invoice.lines
+
+Create a contract with an asset with multiples lines::
+
+    >>> Contract = Model.get('contract')
+    >>> contract = Contract()
+    >>> contract.party = customer
+    >>> contract.start_period_date = datetime.date(today.year, 01, 01)
+    >>> contract.first_invoice_date = datetime.date(today.year, 01, 01)
+    >>> contract.freq = 'monthly'
+    >>> contract.interval = 1
+    >>> line = contract.lines.new()
+    >>> line.service = service
+    >>> line.start_date = datetime.date(today.year, 01, 01)
+    >>> line.asset = asset2
+    >>> line = contract.lines.new()
+    >>> line.service = service2
+    >>> line.start_date = datetime.date(today.year, 01, 01)
+    >>> line.asset = asset2
+    >>> contract.click('confirm')
+    >>> contract.state
+    u'confirmed'
+
+Create a contract with an asset that has assigned in other contract::
+
+    >>> Contract = Model.get('contract')
+    >>> contract = Contract()
+    >>> contract.party = customer
+    >>> contract.start_period_date = datetime.date(today.year, 01, 01)
+    >>> contract.first_invoice_date = datetime.date(today.year, 01, 01)
+    >>> contract.freq = 'monthly'
+    >>> contract.interval = 1
+    >>> line = contract.lines.new()
+    >>> line.service = service
+    >>> line.start_date = datetime.date(today.year, 01, 01)
+    >>> line.asset = asset2
+    >>> contract.click('confirm')  # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+        ...
+    UserError: .
