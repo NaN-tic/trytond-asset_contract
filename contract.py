@@ -73,6 +73,7 @@ class ContractLine:
                         & (Coalesce(table.end_date, max_date) <= end_date)))
                 & (contract.state.in_(['confirmed', 'finished']))
                 & (table.asset == self.asset.id)
+                & (table.contract != self.contract.id)
                 & (table.id != self.id),
                 limit=1))
         overlapping_record = cursor.fetchone()
