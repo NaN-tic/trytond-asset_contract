@@ -9,8 +9,6 @@ __all__ = ['Asset']
 class Asset:
     __name__ = 'asset'
     __metaclass__ = PoolMeta
-    contract_line = fields.Function(fields.Many2One('contract.line',
-            'Current Contract Line'), 'get_contract_line')
     contract_lines = fields.One2Many('contract.line', 'asset',
         'Contract Lines', readonly=True)
 
@@ -19,6 +17,5 @@ class Asset:
         if default is None:
             default = {}
         default = default.copy()
-        if 'contract_lines' not in default:
-            default['contract_lines'] = None
+        default.setdefault('contract_lines')
         return super(Asset, cls).copy(assets, default)
