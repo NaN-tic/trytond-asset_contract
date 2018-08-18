@@ -9,9 +9,8 @@ from trytond.transaction import Transaction
 __all__ = ['Contract', 'ContractLine', 'ContractConsumption']
 
 
-class Contract:
+class Contract(metaclass=PoolMeta):
     __name__ = 'contract'
-    __metaclass__ = PoolMeta
 
     @classmethod
     @ModelView.button
@@ -25,9 +24,8 @@ class Contract:
                 line.check_dates()
 
 
-class ContractLine:
+class ContractLine(metaclass=PoolMeta):
     __name__ = 'contract.line'
-    __metaclass__ = PoolMeta
     asset_party = fields.Function(fields.Many2One('party.party', 'Party'),
         'on_change_with_asset_party')
     asset = fields.Many2One('asset', 'Asset')
@@ -86,9 +84,8 @@ class ContractLine:
                     })
 
 
-class ContractConsumption:
+class ContractConsumption(metaclass=PoolMeta):
     __name__ = 'contract.consumption'
-    __metaclass__ = PoolMeta
 
     def get_invoice_line(self):
         Line = Pool().get('account.invoice.line')

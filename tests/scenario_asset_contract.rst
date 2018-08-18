@@ -156,30 +156,30 @@ Create a contract::
     >>> Contract = Model.get('contract')
     >>> contract = Contract()
     >>> contract.party = customer
-    >>> contract.start_period_date = datetime.date(today.year, 01, 01)
-    >>> contract.first_invoice_date = datetime.date(today.year, 01, 01)
+    >>> contract.start_period_date = datetime.date(today.year, 1, 1)
+    >>> contract.first_invoice_date = datetime.date(today.year, 1, 1)
     >>> contract.freq = 'monthly'
     >>> contract.interval = 1
     >>> line = contract.lines.new()
     >>> line.service = service
-    >>> line.start_date = datetime.date(today.year, 01, 01)
+    >>> line.start_date = datetime.date(today.year, 1, 1)
     >>> line.asset = asset
     >>> line.unit_price
     Decimal('30')
     >>> contract.click('confirm')
     >>> contract.state
-    u'confirmed'
+    'confirmed'
 
 Generate consumed lines::
 
     >>> create_consumptions = Wizard('contract.create_consumptions')
-    >>> create_consumptions.form.date = datetime.date(today.year, 01, 31)
+    >>> create_consumptions.form.date = datetime.date(today.year, 1, 31)
     >>> create_consumptions.execute('create_consumptions')
 
 Generate invoice for consumed lines::
 
     >>> create_invoice = Wizard('contract.create_invoices')
-    >>> create_invoice.form.date = datetime.date(today.year, 01, 31)
+    >>> create_invoice.form.date = datetime.date(today.year, 1, 31)
     >>> create_invoice.execute('create_invoices')
 
 Only one invoice is generated for grouping party::
@@ -195,34 +195,34 @@ Create a contract with an asset with multiples lines::
     >>> Contract = Model.get('contract')
     >>> contract = Contract()
     >>> contract.party = customer
-    >>> contract.start_period_date = datetime.date(today.year, 01, 01)
-    >>> contract.first_invoice_date = datetime.date(today.year, 01, 01)
+    >>> contract.start_period_date = datetime.date(today.year, 1, 1)
+    >>> contract.first_invoice_date = datetime.date(today.year, 1, 1)
     >>> contract.freq = 'monthly'
     >>> contract.interval = 1
     >>> line = contract.lines.new()
     >>> line.service = service
-    >>> line.start_date = datetime.date(today.year, 01, 01)
+    >>> line.start_date = datetime.date(today.year, 1, 1)
     >>> line.asset = asset2
     >>> line = contract.lines.new()
     >>> line.service = service2
-    >>> line.start_date = datetime.date(today.year, 01, 01)
+    >>> line.start_date = datetime.date(today.year, 1, 1)
     >>> line.asset = asset2
     >>> contract.click('confirm')
     >>> contract.state
-    u'confirmed'
+    'confirmed'
 
 Create a contract with an asset that has assigned in other contract::
 
     >>> Contract = Model.get('contract')
     >>> contract = Contract()
     >>> contract.party = customer
-    >>> contract.start_period_date = datetime.date(today.year, 01, 01)
-    >>> contract.first_invoice_date = datetime.date(today.year, 01, 01)
+    >>> contract.start_period_date = datetime.date(today.year, 1, 1)
+    >>> contract.first_invoice_date = datetime.date(today.year, 1, 1)
     >>> contract.freq = 'monthly'
     >>> contract.interval = 1
     >>> line = contract.lines.new()
     >>> line.service = service
-    >>> line.start_date = datetime.date(today.year, 01, 01)
+    >>> line.start_date = datetime.date(today.year, 1, 1)
     >>> line.asset = asset2
     >>> contract.click('confirm')  # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):

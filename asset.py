@@ -6,9 +6,8 @@ from trytond.pool import PoolMeta
 __all__ = ['Asset']
 
 
-class Asset:
+class Asset(metaclass=PoolMeta):
     __name__ = 'asset'
-    __metaclass__ = PoolMeta
     contract_lines = fields.One2Many('contract.line', 'asset',
         'Contract Lines', readonly=True)
 
