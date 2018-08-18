@@ -68,14 +68,13 @@ Create product::
     >>> product = Product()
     >>> template = ProductTemplate()
     >>> template.name = 'product'
-    >>> template.category = category
+    >>> template.account_category = account_category
     >>> template.default_uom = unit
     >>> template.type = 'assets'
     >>> template.purchasable = True
     >>> template.salable = True
     >>> template.list_price = Decimal('10')
     >>> template.cost_price_method = 'fixed'
-    >>> template.account_category = account_category
     >>> template.save()
     >>> product, = template.products
 
