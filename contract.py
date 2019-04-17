@@ -5,6 +5,8 @@ from sql.conditionals import Coalesce
 from trytond.model import ModelView, Workflow, fields
 from trytond.pool import PoolMeta, Pool
 from trytond.transaction import Transaction
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['Contract', 'ContractLine', 'ContractConsumption']
 
@@ -29,15 +31,6 @@ class ContractLine(metaclass=PoolMeta):
     asset_party = fields.Function(fields.Many2One('party.party', 'Party'),
         'on_change_with_asset_party')
     asset = fields.Many2One('asset', 'Asset')
-
-    @classmethod
-    def __setup__(cls):
-        super(ContractLine, cls).__setup__()
-        cls._error_messages.update({
-                'asset_has_contract': ('Contract line "%(contract_line)s" '
-                    'is not valid because asset "%(asset)s" is already '
-                    'assigned to contract line "%(overlapping_line)s".')
-                })
 
     @fields.depends('contract')
     def on_change_with_asset_party(self, name=None):
@@ -77,11 +70,10 @@ class ContractLine(metaclass=PoolMeta):
         overlapping_record = cursor.fetchone()
         if overlapping_record:
             overlapping_line = self.__class__(overlapping_record[0])
-            self.raise_user_error('asset_has_contract', {
-                    'contract_line': self.rec_name,
-                    'asset': self.asset.rec_name,
-                    'overlapping_line': overlapping_line.rec_name,
-                    })
+            raise UserError(gettext('asset_contract.asset_has_contract',
+                    contract_line=self.rec_name,
+                    asset=self.asset.rec_name,
+                    overlapping_line=overlapping_line.rec_name))
 
 
 class ContractConsumption(metaclass=PoolMeta):
