@@ -71,8 +71,6 @@ Create product::
     >>> template.account_category = account_category
     >>> template.default_uom = unit
     >>> template.type = 'assets'
-    >>> template.purchasable = True
-    >>> template.salable = True
     >>> template.list_price = Decimal('10')
     >>> template.cost_price_method = 'fixed'
     >>> template.save()
@@ -83,7 +81,6 @@ Create product::
     >>> template.name = 'service'
     >>> template.default_uom = unit
     >>> template.type = 'service'
-    >>> template.salable = True
     >>> template.list_price = Decimal('30')
     >>> template.cost_price = Decimal('10')
     >>> template.cost_price_method = 'fixed'
@@ -95,7 +92,6 @@ Create product::
     >>> template.name = 'service 2'
     >>> template.default_uom = unit
     >>> template.type = 'service'
-    >>> template.salable = True
     >>> template.list_price = Decimal('20')
     >>> template.cost_price = Decimal('5')
     >>> template.cost_price_method = 'fixed'
@@ -128,14 +124,10 @@ Create daily service::
     >>> service = Service()
     >>> service.product = service_product
     >>> service.name = 'Service'
-    >>> service.freq = 'daily'
-    >>> service.interval = 1
     >>> service.save()
     >>> service2 = Service()
     >>> service2.product = service_product2
     >>> service2.name = 'Service 2'
-    >>> service2.freq = 'daily'
-    >>> service2.interval = 1
     >>> service2.save()
 
 Configure contract::
