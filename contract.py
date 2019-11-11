@@ -32,7 +32,7 @@ class ContractLine(metaclass=PoolMeta):
         'on_change_with_asset_party')
     asset = fields.Many2One('asset', 'Asset')
 
-    @fields.depends('contract')
+    @fields.depends('_parent_contract.id', '_parent_contract.party','contract')
     def on_change_with_asset_party(self, name=None):
         if self.contract and self.contract.party:
             return self.contract.party.id
