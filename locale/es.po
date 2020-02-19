@@ -29,3 +29,7 @@ msgstr "Contratos"
 msgctxt "model:ir.action,name:act_contract_line_form"
 msgid "Contract Lines"
 msgstr "Lineas de contratos"
+
+msgctxt "view:asset:"
+msgid "Contract Lines"
+msgstr "Lineas de contratos"
