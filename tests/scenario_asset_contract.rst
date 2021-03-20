@@ -133,7 +133,7 @@ Create daily service::
 Configure contract::
 
     >>> Sequence = Model.get('ir.sequence')
-    >>> sequence_contract, = Sequence.find([('code', '=', 'contract')])
+    >>> sequence_contract, = Sequence.find([('name', '=', 'Contract')])
     >>> Journal = Model.get('account.journal')
     >>> journal, = Journal.find([('type', '=', 'revenue')])
 
