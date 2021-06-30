@@ -12,7 +12,7 @@ msgstr ""
 
 msgctxt "field:asset,contract_lines:"
 msgid "Contract Lines"
-msgstr "Lineas de contratos"
+msgstr "Líneas de contratos"
 
 msgctxt "field:contract.line,asset:"
 msgid "Asset"
@@ -28,8 +28,8 @@ msgstr "Contratos"
 
 msgctxt "model:ir.action,name:act_contract_line_form"
 msgid "Contract Lines"
-msgstr "Lineas de contratos"
+msgstr "Líneas de contratos"
 
 msgctxt "view:asset:"
 msgid "Contract Lines"
-msgstr "Lineas de contratos"
+msgstr "Líneas de contratos"
