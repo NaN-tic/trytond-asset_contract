@@ -9,13 +9,7 @@ from configparser import ConfigParser
 
 MODULE = 'asset_contract'
 PREFIX = 'nantic'
-MODULE2PREFIX = {
-    'asset': 'nantic',
-    'contract': 'nantic',
-    'asset_invoice': 'nantic',
-    'asset_contract': 'nantic',
-    'analytic_invoice_asset': 'nantic',
-    }
+MODULE2PREFIX = {}
 
 
 def read(fname):
@@ -46,56 +40,24 @@ major_version = int(major_version)
 minor_version = int(minor_version)
 
 requires = []
-
 for dep in info.get('depends', []):
     if not re.match(r'(ir|res)(\W|$)', dep):
         prefix = MODULE2PREFIX.get(dep, 'trytond')
         requires.append(get_require_version('%s_%s' % (prefix, dep)))
 requires.append(get_require_version('trytond'))
 
-tests_require = [get_require_version('proteus'),
-    get_require_version('trytond_account_invoice'),
-    get_require_version('trytond_analytic_account'),
-    ]
+tests_require = [
+    get_require_version('proteus'),
+]
+
 series = '%s.%s' % (major_version, minor_version)
 if minor_version % 2:
-    branch = 'master'
+    branch = 'default'
 else:
     branch = series
-dependency_links = [
-    ('git+https://github.com/NaN-tic/'
-        'trytond-analytic_invoice_asset@%(branch)s'
-        '#egg=nantic-analytic_invoice_asset-%(series)s' % {
-            'branch': branch,
-            'series': series,
-            }),
-    ('git+https://github.com/NaN-tic/'
-        'trytond-asset_contract@%(branch)s'
-        '#egg=nantic-asset_contract-%(series)s' % {
-            'branch': branch,
-            'series': series,
-            }),
-    ('git+https://github.com/NaN-tic/'
-        'trytond-asset_invoice@%(branch)s'
-        '#egg=nantic-asset_invoice-%(series)s' % {
-            'branch': branch,
-            'series': series,
-            }),
 
-    ('git+https://github.com/NaN-tic/'
-        'trytond-asset@%(branch)s'
-        '#egg=nantic-asset-%(series)s' % {
-            'branch': branch,
-            'series': series,
-            }),
+dependency_links = []
 
-    ('git+https://github.com/NaN-tic/'
-        'trytond-contract@%(branch)s'
-        '#egg=nantic-contract-%(series)s' % {
-            'branch': branch,
-            'series': series,
-            }),
-    ]
 if minor_version % 2:
     # Add development index for testing with proteus
     dependency_links.append('https://trydevpi.tryton.org/')
@@ -107,15 +69,15 @@ setup(name='%s_%s' % (PREFIX, MODULE),
     author='NaN·tic',
     author_email='info@nan-tic.com',
     url='http://www.nan-tic.com/',
-    download_url="https://github.com/NaN-tic/trytond-%s" % MODULE,
+    download_url="https://bitbucket.org/nantic/trytond-%s" % MODULE,
     package_dir={'trytond.modules.%s' % MODULE: '.'},
     packages=[
         'trytond.modules.%s' % MODULE,
         'trytond.modules.%s.tests' % MODULE,
         ],
     package_data={
-        'trytond.modules.%s' % MODULE: (info.get('xml', []) +
-             ['tryton.cfg', 'view/*.xml', 'locale/*.po', 'tests/*.rst']),
+        'trytond.modules.%s' % MODULE: (info.get('xml', [])
+            + ['tryton.cfg', 'locale/*.po', 'tests/*.rst']),
         },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -154,3 +116,4 @@ setup(name='%s_%s' % (PREFIX, MODULE),
     test_suite='tests',
     test_loader='trytond.test_loader:Loader',
     tests_require=tests_require,
+    )
