@@ -85,7 +85,11 @@ class ContractConsumption(metaclass=PoolMeta):
         if (line and self.contract_line.asset
                 and hasattr(Line, 'invoice_asset')):
             line.invoice_asset = self.contract_line.asset
-        if hasattr(line, 'on_change_invoice_asset'):
+        contract_analytic_accounts = getattr(
+            self.contract_line, 'analytic_accounts', ())
+        if (hasattr(line, 'on_change_invoice_asset')
+                and not any(
+                    entry.account for entry in contract_analytic_accounts)):
             line.on_change_invoice_asset()
 
         return line
